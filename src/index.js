@@ -12,9 +12,9 @@ TODOs:
 ```1.2 create an array of four random numbers between 1 and 100
 ```1.3 alert generated numbers()
 
-2.1 use prompt for the question(ask user to enter four numbers separated by spaces)
-2.2 save user input to a variable
-2.3 parse entered input to an array of four numbers
+```2.1 use prompt for the question(ask user to enter four numbers separated by spaces)
+```2.2 save user input to a variable
+```2.3 parse entered input to an array of four numbers
 2.4 delay prompt(use setTimeout())
 
 3. count correct numbers(if they were entered in correct sequence)
@@ -47,9 +47,9 @@ function buildNumberArray() {
 // console.log(buildNumberArray());
 
 /* create an alert message using buildNumberArray() */
-function createAlertMessage() {
+function createAlertMessage(arr) {
   let message = `***MEMORY TEST***\n\nMemorize these numbers and their order\n\n`;
-  let stringOfNumbers = buildNumberArray().join(`           `);
+  let stringOfNumbers = arr.join(`           `);
 
   message += `${stringOfNumbers}\n\nWhen you are ready, press OK or Enter`;
 
@@ -63,5 +63,41 @@ const generatedNumbers = buildNumberArray();
 
 const alertMessage = alert(createAlertMessage(generatedNumbers));
 
+let userInput = prompt(
+  `***\n\nPlease enter memorized numbers in their order, separate them by space.\n\n***`
+);
 
-alert(createAlertMessage());
+// const userInput = `1 2 3 4`;
+
+// console.log("userInput: ", userInput);
+
+// use userInput string and parse it to an array of four strings
+function parseStringToArray(str) {
+  const numbersAsStrings = str.split(` `);
+
+  return numbersAsStrings;
+}
+
+const parsedStringArray = parseStringToArray(userInput);
+
+// console.log("parseStringToArray: ", parsedStringArray);
+
+function parseIntArray(arr) {
+  const numbers = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    numbers.push(parseInt(arr[i]));
+  }
+
+  return numbers;
+}
+// console.log("parseIntArray: ", parseIntArray(result));
+
+// save user input numbers array in a variable
+const userInputNumbers = parseIntArray(parsedStringArray);
+
+// console.log("userInputNumbers: ", userInputNumbers);
+
+const testMessage = alert(
+  `You had to memorize these numbers:\n${generatedNumbers}\n\nYou entered:\n${userInputNumbers}`
+);
