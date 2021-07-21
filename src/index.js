@@ -56,6 +56,12 @@ function createAlertMessage() {
   return message;
 }
 
-// console.log(createAlertMessage());
+// save generated numbers array in a variable
+const generatedNumbers = buildNumberArray();
+
+// console.log(createAlertMessage(generatedNumbers));
+
+const alertMessage = alert(createAlertMessage(generatedNumbers));
+
 
 alert(createAlertMessage());
