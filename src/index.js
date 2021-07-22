@@ -15,7 +15,7 @@ TODOs:
 ```2.1 use prompt for the question(ask user to enter four numbers separated by spaces)
 ```2.2 save user input to a variable
 ```2.3 parse entered input to an array of four numbers
-2.4 delay prompt(use setTimeout())
+```2.4 delay prompt(use setTimeout())
 
 3. count correct numbers(if they were entered in correct sequence)
 
@@ -63,41 +63,44 @@ const generatedNumbers = buildNumberArray();
 
 const alertMessage = alert(createAlertMessage(generatedNumbers));
 
-let userInput = prompt(
-  `***\n\nPlease enter memorized numbers in their order, separate them by space.\n\n***`
-);
+const timeoutID = setTimeout(() => {
+  let userInput = prompt(
+    `***\n\nPlease enter memorized numbers in their order, separate them by space.\n\n***`
+  );
 
-// const userInput = `1 2 3 4`;
+  console.log(userInput);
 
-// console.log("userInput: ", userInput);
+  // const userInput = `1 2 3 4`;
 
-// use userInput string and parse it to an array of four strings
-function parseStringToArray(str) {
-  const numbersAsStrings = str.split(` `);
+  // console.log("userInput: ", userInput);
 
-  return numbersAsStrings;
-}
+  // use userInput string and parse it to an array of four strings
+  function parseStringToArray(str) {
+    const numbersAsStrings = str.split(` `);
 
-const parsedStringArray = parseStringToArray(userInput);
-
-// console.log("parseStringToArray: ", parsedStringArray);
-
-function parseIntArray(arr) {
-  const numbers = [];
-
-  for (let i = 0; i < arr.length; i++) {
-    numbers.push(parseInt(arr[i]));
+    return numbersAsStrings;
   }
 
-  return numbers;
-}
-// console.log("parseIntArray: ", parseIntArray(result));
+  const parsedStringArray = parseStringToArray(userInput);
 
-// save user input numbers array in a variable
-const userInputNumbers = parseIntArray(parsedStringArray);
+  // console.log("parseStringToArray: ", parsedStringArray);
 
-// console.log("userInputNumbers: ", userInputNumbers);
+  function parseIntArray(arr) {
+    const numbers = [];
 
-const testMessage = alert(
-  `You had to memorize these numbers:\n${generatedNumbers}\n\nYou entered:\n${userInputNumbers}`
-);
+    for (let i = 0; i < arr.length; i++) {
+      numbers.push(parseInt(arr[i]));
+    }
+
+    return numbers;
+  }
+  // console.log("parseIntArray: ", parseIntArray(result));
+
+  // save user input numbers array in a variable
+  const userInputNumbers = parseIntArray(parsedStringArray);
+
+  // console.log("userInputNumbers: ", userInputNumbers);
+  const testMessage = alert(
+    `You had to memorize these numbers:\n${generatedNumbers}\n\nYou entered:\n${userInputNumbers}`
+  );
+}, 1500);
