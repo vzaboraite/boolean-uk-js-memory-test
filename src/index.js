@@ -113,6 +113,6 @@ const timeoutID = setTimeout(() => {
 
   // console.log("userInputNumbers: ", userInputNumbers);
   const testMessage = alert(
-    `You had to memorize these numbers:\n${generatedNumbers}\n\nYou entered:\n${userInputNumbers}`
+    `You guessed ${count} numbers out of four.\n\nYou had to memorize:\n${generatedNumbers}\n\nYou entered:\n${userInputNumbers}`
   );
 }, 1500);
