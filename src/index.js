@@ -99,6 +99,18 @@ const timeoutID = setTimeout(() => {
   // save user input numbers array in a variable
   const userInputNumbers = parseIntArray(parsedStringArray);
 
+  let count = 0;
+  function checkAnswer(generatedNumbers, userNumbers) {
+    for (let i = 0; i < generatedNumbers.length; i++) {
+      if (generatedNumbers[i] === userNumbers[i]) {
+        count += 1;
+      }
+    }
+    return count;
+  }
+
+  checkAnswer(generatedNumbers, userInputNumbers);
+
   // console.log("userInputNumbers: ", userInputNumbers);
   const testMessage = alert(
     `You had to memorize these numbers:\n${generatedNumbers}\n\nYou entered:\n${userInputNumbers}`
