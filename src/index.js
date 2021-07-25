@@ -30,9 +30,6 @@ function generateRandomNumber(min, max) {
   return result;
 }
 
-// const generatedNumber = generateRandomNumber(1, 100);
-// console.log("generatedNumber: ", generatedNumber);
-
 /*  - use generateRandomNumber(), 
     - return an array of 4 generated random numbers between 1 and 100 */
 function buildNumberArray() {
@@ -44,8 +41,6 @@ function buildNumberArray() {
   return generatedNumbers;
 }
 
-// console.log(buildNumberArray());
-
 /* create an alert message using buildNumberArray() */
 function createAlertMessage(arr) {
   let message = `***MEMORY TEST***\n\nMemorize these numbers and their order\n\n`;
@@ -56,63 +51,55 @@ function createAlertMessage(arr) {
   return message;
 }
 
-// save generated numbers array in a variable
-const generatedNumbers = buildNumberArray();
-
-// console.log(createAlertMessage(generatedNumbers));
-
-const alertMessage = alert(createAlertMessage(generatedNumbers));
-
-const timeoutID = setTimeout(() => {
+function askUserInput() {
   let userInput = prompt(
-    `***\n\nPlease enter memorized numbers in their order, separate them by space.\n\n***`
+    `***\n\nPlease enter memorized numbers in their order.\n(Separate them by space)\n\n***`
   );
+  return userInput;
+}
 
-  console.log(userInput);
+// use userInput string and parse it to an array of four strings
+function parseStringToArray(str) {
+  const numbersAsStrings = str.split(` `);
 
-  // const userInput = `1 2 3 4`;
+  return numbersAsStrings;
+}
 
-  // console.log("userInput: ", userInput);
+function parseIntArray(arr) {
+  const numbers = [];
 
-  // use userInput string and parse it to an array of four strings
-  function parseStringToArray(str) {
-    const numbersAsStrings = str.split(` `);
-
-    return numbersAsStrings;
+  for (let i = 0; i < arr.length; i++) {
+    numbers.push(parseInt(arr[i]));
   }
 
-  const parsedStringArray = parseStringToArray(userInput);
+  return numbers;
+}
 
-  // console.log("parseStringToArray: ", parsedStringArray);
-
-  function parseIntArray(arr) {
-    const numbers = [];
-
-    for (let i = 0; i < arr.length; i++) {
-      numbers.push(parseInt(arr[i]));
+function checkAnswer(generatedNumbers, userNumbers) {
+  let count = 0;
+  for (let i = 0; i < generatedNumbers.length; i++) {
+    if (generatedNumbers[i] === userNumbers[i]) {
+      count += 1;
     }
-
-    return numbers;
   }
-  // console.log("parseIntArray: ", parseIntArray(result));
+  return count;
+}
 
+setTimeout(() => {
+  // save generated numbers array in a variable
+  const generatedNumbers = buildNumberArray();
+  alert(createAlertMessage(generatedNumbers));
+
+  // ask user to enter the numbers
+  let userInput = askUserInput();
+  const parsedStringArray = parseStringToArray(userInput);
   // save user input numbers array in a variable
   const userInputNumbers = parseIntArray(parsedStringArray);
 
-  let count = 0;
-  function checkAnswer(generatedNumbers, userNumbers) {
-    for (let i = 0; i < generatedNumbers.length; i++) {
-      if (generatedNumbers[i] === userNumbers[i]) {
-        count += 1;
-      }
-    }
-    return count;
-  }
-
-  checkAnswer(generatedNumbers, userInputNumbers);
+  const result = checkAnswer(generatedNumbers, userInputNumbers);
 
   // console.log("userInputNumbers: ", userInputNumbers);
   const testMessage = alert(
-    `You guessed ${count} numbers out of four.\n\nYou had to memorize:\n${generatedNumbers}\n\nYou entered:\n${userInputNumbers}`
+    `You entered correctly ${result} numbers.\n\nYou had to memorize:\n${generatedNumbers}\n\nYou entered:\n${userInputNumbers}`
   );
 }, 1500);
